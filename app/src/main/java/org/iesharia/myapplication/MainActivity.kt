@@ -241,13 +241,23 @@ fun MainActivity(modifier: Modifier) {
                         confirmButton = {
                             Button(
                                 onClick = {
+                                    val dbHelper = DBHelper(context)
+
+                                    val id = indice
+
+                                    val rowsAffected = dbHelper.updateName(id, nuevoNombre, nuevaEdad)
+
+                                    if (rowsAffected > 0) {
+                                        lName[indice] = nuevoNombre
+                                        lAge[indice] = nuevaEdad
+                                    }
+
                                     showDialog = false
-                                    lName[indice] = nuevoNombre
-                                    lAge[indice] = nuevaEdad
                                 }
                             ) {
                                 Text("Aceptar")
                             }
+
                         },
                         dismissButton = {
                             Button(onClick = { showDialog = false }) {
