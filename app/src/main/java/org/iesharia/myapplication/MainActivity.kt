@@ -192,7 +192,6 @@ fun MainActivity(modifier: Modifier) {
                 Text(text = "Edad")
             }
             for (i in lName.indices) {
-                indice = i
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center
@@ -213,6 +212,7 @@ fun MainActivity(modifier: Modifier) {
                             .padding(end = 10.dp)
                             .clickable{
                                 showDialog = true
+                                indice = i
                             }
                     )
                 }
