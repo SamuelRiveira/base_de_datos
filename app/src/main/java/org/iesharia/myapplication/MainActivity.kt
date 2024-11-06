@@ -210,6 +210,23 @@ fun MainActivity(modifier: Modifier) {
                                 indice = i
                             }
                     )
+                    Image(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Eliminar",
+                        modifier = Modifier
+                            .size(40.dp)
+                            .padding(end = 10.dp)
+                            .clickable {
+                                val dbHelper = DBHelper(context)
+                                val id = lId[i]
+
+                                dbHelper.deleteName(id)
+
+                                lId.removeAt(i)
+                                lName.removeAt(i)
+                                lAge.removeAt(i)
+                            }
+                    )
                 }
                 if (showDialog){
                     AlertDialog(
