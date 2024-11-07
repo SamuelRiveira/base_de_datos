@@ -47,26 +47,20 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory? = null) 
         return db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
     }
 
-    fun updateName(id: Int, name: String, age: String): Int {
+    fun updateName(id: String, name: String, age: String): Int {
         val db = this.writableDatabase
         val values = ContentValues()
 
         values.put(NAME_COl, name)
         values.put(AGE_COL, age)
 
-        // Actualiza el registro y devuelve el número de filas afectadas
-        return db.update(TABLE_NAME, values, "$ID_COL = ?", arrayOf(id.toString())).also {
-            db.close()
-        }
+        return db.update(TABLE_NAME, values, "$ID_COL = ?", arrayOf(id))
     }
 
-    fun deleteName(id: Int): Int {
+    fun deleteName(id: String): Int {
         val db = this.writableDatabase
 
-        // Elimina el registro y devuelve el número de filas afectadas
-        return db.delete(TABLE_NAME, "$ID_COL = ?", arrayOf(id.toString())).also {
-            db.close()
-        }
+        return db.delete(TABLE_NAME, "$ID_COL = ?", arrayOf(id))
     }
 
     companion object{

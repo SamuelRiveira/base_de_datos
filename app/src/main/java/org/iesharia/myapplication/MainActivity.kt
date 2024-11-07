@@ -44,7 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.iesharia.myapplication.ui.theme.MyApplicationTheme
 
-
+// data, view, controller, MainActivity
 
 class MainActivity : ComponentActivity() {
 
@@ -81,7 +81,7 @@ fun MainActivity(modifier: Modifier) {
     var nuevaEdad: String by remember { mutableStateOf("") }
     var indice: Int by remember { mutableStateOf(0) }
     var showDialog by remember { mutableStateOf(false) }
-    val lId: MutableList<Int> = remember { mutableStateListOf() }
+    val lId: MutableList<String> = remember { mutableStateListOf() }
 
     Column (
         verticalArrangement = Arrangement.Center,
@@ -160,7 +160,7 @@ fun MainActivity(modifier: Modifier) {
 
                         if (cursor != null && cursor.moveToFirst()) {
                             do {
-                                lId.add(cursor.getInt(cursor.getColumnIndex(DBHelper.ID_COL)))
+                                lId.add(cursor.getInt(cursor.getColumnIndex(DBHelper.ID_COL)).toString())
                                 lName.add(cursor.getString(cursor.getColumnIndex(DBHelper.NAME_COl)))
                                 lAge.add(cursor.getString(cursor.getColumnIndex(DBHelper.AGE_COL)))
                             } while (cursor.moveToNext())
@@ -218,7 +218,7 @@ fun MainActivity(modifier: Modifier) {
                             .padding(end = 10.dp)
                             .clickable {
                                 val dbHelper = DBHelper(context)
-                                val id = lId[i]
+                                val id: String = lId[i]
 
                                 dbHelper.deleteName(id)
 
